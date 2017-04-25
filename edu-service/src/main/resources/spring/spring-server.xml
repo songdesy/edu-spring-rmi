@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <bean id="studentServiceImpl" class="com.wssong.service.impl.StudentServiceImpl"></bean>
+
+    <bean id="epgAreaService" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="epgAreaService" />
+        <property name="service" ref="studentServiceImpl" />
+        <property name="serviceInterface"
+                  value="com.wssong.service.StudentService" />
+
+        <property name="registryPort" value="${rmi.registryPort}" />
+        <property name="servicePort" value="${rmi.servicePort}" />
+    </bean>
+</beans>
